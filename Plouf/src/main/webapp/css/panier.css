@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: url("https://images.alphacoders.com/698/698089.jpg");
+    font-family: 'Roboto', sans-serif;
+}
+.shopping-cart {
+    width: 850px;
+    margin: 80px auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    height: 60px;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item {
+    padding: 20px 30px;
+    height: 120px;
+    display: flex;
+}
+
+.item:nth-child(3) {
+    border-top:  1px solid #E1E8EE;
+    border-bottom:  1px solid #E1E8EE;
+}
+.buttons {
+    position: relative;
+    padding-top: 30px;
+    margin-right: 60px;
+}
+.delete-btn,
+.delete-btn {
+    width: 18px;
+    height: 17px;
+    background: url("https://c7.uihere.com/files/36/528/861/computer-icons-button-wiki-delete-button.jpg") no-repeat center;
+}
+.image {
+    margin-right: 50px;
+}
+.imgpanier{
+    height: 80px;
+}
+.boutonImg{
+    height: 25px;
+}
+.description {
+    padding-top: 10px;
+    margin-right: 60px;
+    width: 115px;
+}
+
+.description span {
+    display: block;
+    font-size: 14px;
+    color: #43484D;
+    font-weight: 400;
+}
+
+.description span:first-child {
+    margin-bottom: 5px;
+}
+.description span:last-child {
+    font-weight: 300;
+    margin-top: 8px;
+    color: #86939E;
+}
+.quantity {
+    padding-top: 20px;
+    margin-right: 60px;
+}
+.quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 32px;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+button[class*=btn] {
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+.minus-btn img {
+    margin-bottom: 3px;
+}
+.plus-btn img {
+    margin-top: 2px;
+}
+
+button:focus,
+input:focus {
+    outline:0;
+}
+.total-price {
+    width: 100px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+.del-btn{
+    width: 83px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    color: red;
+    font-weight: 300;
+}
+.command-price {
+    width: 200px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #43484D;
+}
+.btn-cmd{
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color:#4eb5f1;
+    text-align:center;
+    transition: all 0.2s;
+    width: 150px;
+}
+.btn-cmd:hover{
+    background-color:#4095c6;
+}
+
