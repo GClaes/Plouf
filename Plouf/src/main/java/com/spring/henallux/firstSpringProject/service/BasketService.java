@@ -25,9 +25,6 @@ public class BasketService {
             basket.addProduct(product);
     }
 
-    public void rmQuantite(CommandLine commandLine, Basket basket){
-        basket.rmQuantite(commandLine);
-    }
 
     public void clean(Basket basket){
         basket.clean();

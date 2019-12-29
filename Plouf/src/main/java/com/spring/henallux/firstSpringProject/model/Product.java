@@ -9,7 +9,6 @@ public class Product {
     private String urlImg;
 
 
-
     public Product() {
     }
 

@@ -5,8 +5,10 @@ import com.spring.henallux.firstSpringProject.dataAccess.dao.CommandeDataAccess;
 import com.spring.henallux.firstSpringProject.model.Basket;
 import com.spring.henallux.firstSpringProject.model.CommandLine;
 import com.spring.henallux.firstSpringProject.model.Commande;
+import com.spring.henallux.firstSpringProject.model.Product;
 import com.spring.henallux.firstSpringProject.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -46,34 +48,25 @@ public class BasketController {
 
     @GetMapping("/rmFromBasket")
     public String rmFromBasket(@RequestParam("productId")int id, @ModelAttribute(value = CURRENT_BASKET) Basket basket){
-        for (CommandLine c : basket.getLines()) {
-            if (c.getProduit().getNumProduit() == id) {
-                basket.removeProduct(c);
-                return "redirect:/panier";
-            }
-        }
-        return "integrated:error";
+        Product product = new Product();
+        product.setNumProduit(id);
+        basket.removeProduct(product);
+        return "redirect:/panier";
     }
     @GetMapping("/rmQuantite")
     public String rmQuantite(@RequestParam("productId")int id, @ModelAttribute(value = CURRENT_BASKET) Basket basket) {
-        for (CommandLine c : basket.getLines()) {
-            if (c.getProduit().getNumProduit() == id) {
-                basketService.rmQuantite(c, basket);
-                return "redirect:/panier";
-            }
-        }
-        return "integrated:error";
+        Product product = new Product();
+        product.setNumProduit(id);
+        basket.rmQuantite(product);
+        return "redirect:/panier";
     }
 
     @GetMapping("/addQuantite")
     public String addQuantite(@RequestParam("productId")int id, @ModelAttribute(value = CURRENT_BASKET) Basket basket) {
-        for (CommandLine c : basket.getLines()) {
-            if (c.getProduit().getNumProduit() == id) {
-                basket.addQuantite(c);
-                return "redirect:/panier";
-            }
-        }
-        return "integrated:error";
+        Product product = new Product();
+        product.setNumProduit(id);
+        basket.addQuantite(product);
+        return "redirect:/panier";
     }
 
     @GetMapping("/commander")
