@@ -70,12 +70,23 @@ public class BasketController {
     }
 
     @GetMapping("/commander")
-    public String commander(@ModelAttribute(value = CURRENT_BASKET) Basket basket){
-        if(basket.getLines().isEmpty()){
-            //lancer exception / JSP
+    public String commander(ModelMap model, @ModelAttribute(value = CURRENT_BASKET) Basket basket){
+        if(!basket.getLines().isEmpty()){
+            model.addAttribute("prix",basket.getTotalPrice());
+            return "integrated:payment";
         }
-        basketService.enregistrerLaCommande(basket);
+        return "integrated:panier";
+    }
 
-        return "redirect:/welcome";
+
+    @GetMapping("/succesCommand")
+    public String succesCommand(@ModelAttribute(value = CURRENT_BASKET) Basket basket){
+        basketService.enregistrerLaCommande(basket);
+        return "integrated:command_succes";
+    }
+
+    @GetMapping("/failedCommand")
+    public String failedCommand(@ModelAttribute(value = CURRENT_BASKET) Basket basket){
+        return "integrated:command_failure";
     }
 }
