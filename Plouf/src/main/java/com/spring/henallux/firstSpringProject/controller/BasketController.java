@@ -1,22 +1,13 @@
 package com.spring.henallux.firstSpringProject.controller;
 
-import com.spring.henallux.firstSpringProject.dataAccess.dao.CommandLineDataAccess;
-import com.spring.henallux.firstSpringProject.dataAccess.dao.CommandeDataAccess;
+import com.spring.henallux.firstSpringProject.dataAccess.dao.CommandDataAccess;
 import com.spring.henallux.firstSpringProject.model.Basket;
-import com.spring.henallux.firstSpringProject.model.CommandLine;
-import com.spring.henallux.firstSpringProject.model.Commande;
 import com.spring.henallux.firstSpringProject.model.Product;
 import com.spring.henallux.firstSpringProject.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 import static com.spring.henallux.firstSpringProject.utilities.Constants.CURRENT_BASKET;
 
@@ -27,7 +18,6 @@ public class BasketController {
 
 
     private final BasketService basketService;
-    private final CommandeDataAccess commandeDataAccess;
 
     @ModelAttribute(CURRENT_BASKET)
     public Basket basket(){
@@ -35,9 +25,8 @@ public class BasketController {
     }
 
     @Autowired
-    public BasketController(BasketService basketService, CommandeDataAccess commandeDataAccess) {
+    public BasketController(BasketService basketService) {
         this.basketService = basketService;
-        this.commandeDataAccess = commandeDataAccess;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -75,7 +64,7 @@ public class BasketController {
             model.addAttribute("prix",basket.getTotalPrice());
             return "integrated:payment";
         }
-        return "integrated:panier";
+        return "integrated:basket";
     }
 
 

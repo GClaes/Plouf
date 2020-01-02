@@ -48,7 +48,6 @@ public class CatalogController {
 
     @GetMapping("/addToBasket")
     public String addToBasket(@RequestParam("productId")int id, @ModelAttribute(value = CURRENT_BASKET) Basket basket, Locale locale){
-
         List<Product>products =  productDataAccess.findAll(locale.getLanguage());
         for (Product p : products){
             if(p.getNumProduit() == id){

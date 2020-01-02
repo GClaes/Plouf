@@ -36,8 +36,8 @@
                     <img class="boutonImg" src="https://static.thenounproject.com/png/645442-200.png" alt="" />
                 </a>
             </div>
-            <div class="total-price">${item.prix} €</div>
-            <div class="total-price"> Total - <fmt:formatNumber type="number" pattern="0.00" value ="${item.prix*item.quantite}"/> €</div>
+            <div class="total-price"><fmt:formatNumber type="number" pattern="0.00" value ="${item.prix*1+item.produit.tvaappliquee}"/> €</div>
+            <div class="total-price"> Total - <fmt:formatNumber type="number" pattern="0.00" value ="${(item.prix*1+item.produit.tvaappliquee)*item.quantite}"/> €</div>
             <c:url var="rmFromBasket" value="/panier/rmFromBasket">
                 <c:param name="productId" value="${item.produit.numProduit}" />
             </c:url>

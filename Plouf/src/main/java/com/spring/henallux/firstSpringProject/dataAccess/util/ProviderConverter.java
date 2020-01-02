@@ -78,38 +78,38 @@ public class ProviderConverter {
         return productEntity;
     }
 
-    public Product produitEntityToProduitModel(ProductEntity productEntity, TraductionEntity traductionEntity){
+    public Product produitEntityToProduitModel(ProductEntity productEntity, TranslationEntity translationEntity){
         Product product = new Product();
-        product.setNom(traductionEntity.getNomProduit());
+        product.setNom(translationEntity.getNomProduit());
         product.setNumProduit(productEntity.getNumProduit());
         product.setPrixcatalogue(productEntity.getPrixcatalogue());
         product.setTvaappliquee(productEntity.getTvaappliquee());
         product.setUrlImg(productEntity.getUrlImg());
-        product.setDescription(traductionEntity.getDescription());
+        product.setDescription(translationEntity.getDescription());
         return product;
     }
 
-    public Commande commandeEntityToCommandeModel(CommandeEntity commandeEntity){
-        Commande commande = new Commande();
-        commande.setDateCommande(commandeEntity.getDatecommande());
-        return commande;
+    public Command commandeEntityToCommandeModel(CommandEntity commandEntity){
+        Command command = new Command();
+        command.setDateCommande(commandEntity.getDatecommande());
+        return command;
     }
 
-    public CommandeEntity commandeModelToCommandeEntity(Commande commande){
+    public CommandEntity commandeModelToCommandeEntity(Command command){
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        CommandeEntity commandeEntity = new CommandeEntity(commande.getDateCommande(), userModelToUserEntity(user));
-        for(CommandLine commandLine : commande.getLignes()){
-            CommandLineEntity commandLineEntity = new CommandLineEntity(commandLine.getQuantite(), commandLine.getPrix(),commandeEntity,productModelToProductEntity(commandLine.getProduit()));
-            commandeEntity.addLine(commandLineEntity);
+        CommandEntity commandEntity = new CommandEntity(command.getDateCommande(), userModelToUserEntity(user));
+        for(CommandLine commandLine : command.getLignes()){
+            CommandLineEntity commandLineEntity = new CommandLineEntity(commandLine.getQuantite(), commandLine.getPrix(), commandEntity,productModelToProductEntity(commandLine.getProduit()));
+            commandEntity.addLine(commandLineEntity);
         }
-        return  commandeEntity;
+        return commandEntity;
     }
 
     public ProductEntity productModelToProductEntity(Product product){
         return new ProductEntity(product.getNumProduit(), product.getNom(), product.getPrixcatalogue(), product.getTvaappliquee());
     }
 
-    public Traduction traductionEntityToTraductionModel(TraductionEntity traductionEntity){
-        return new Traduction(traductionEntity.getNomProduit(), traductionEntity.getDescription());
+    public Translation traductionEntityToTraductionModel(TranslationEntity translationEntity){
+        return new Translation(translationEntity.getNomProduit(), translationEntity.getDescription());
     }
 }

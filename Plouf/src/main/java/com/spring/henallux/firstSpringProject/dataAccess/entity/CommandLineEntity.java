@@ -1,8 +1,6 @@
 package com.spring.henallux.firstSpringProject.dataAccess.entity;
 
 
-import com.spring.henallux.firstSpringProject.model.Commande;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,16 +18,16 @@ public class CommandLineEntity {
 
     @ManyToOne
     @JoinColumn(name = "commandeid")
-    private CommandeEntity commandeEntity;
+    private CommandEntity commandEntity;
 
     @ManyToOne
     @JoinColumn(name="produitid")
     private ProductEntity productEntity;
 
-    public CommandLineEntity(float quantity, float prix, CommandeEntity commandeEntity, ProductEntity productEntity) {
+    public CommandLineEntity(float quantity, float prix, CommandEntity commandEntity, ProductEntity productEntity) {
         this.quantity = quantity;
         this.prix = prix;
-        this.commandeEntity = commandeEntity;
+        this.commandEntity = commandEntity;
         this.productEntity = productEntity;
     }
 
@@ -60,12 +58,12 @@ public class CommandLineEntity {
         this.prix = prix;
     }
 
-    public CommandeEntity getCommandeEntity() {
-        return commandeEntity;
+    public CommandEntity getCommandEntity() {
+        return commandEntity;
     }
 
-    public void setCommandeEntity(CommandeEntity commandeEntity) {
-        this.commandeEntity = commandeEntity;
+    public void setCommandEntity(CommandEntity commandEntity) {
+        this.commandEntity = commandEntity;
     }
 
 
