@@ -37,17 +37,16 @@ public class InscriptionController {
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public String getFormData(@Valid @ModelAttribute(value = "user") User user, final BindingResult error, Locale locale) {
+    public String getFormData(@Valid @ModelAttribute(value = "user") User user, final BindingResult errors, Locale locale) {
         if(user.getLogin()!= null && !StringUtils.isEmpty(user.getLogin()) && userDataAccess.loadUserByUsername(user.getLogin())!= null){
             FieldError fieldError = new FieldError("user","login",messageSource.getMessage("loginExistant",null,locale));
-            error.addError(fieldError);
+            errors.addError(fieldError);
         }
         if (!user.getMotDePasse().equals(user.getMdpRep())) {
             FieldError fieldError = new FieldError("user","mdpRep",messageSource.getMessage("repetMDP",null,locale));
-            error.addError(fieldError);
+            errors.addError(fieldError);
         }
-        if(error.hasErrors()) {
-            //ERREUR
+        if(errors.hasErrors()) {
             return "integrated:signIn";
         }
         user.setRoles("USER");

@@ -41,7 +41,7 @@ public class User implements UserDetails {
     private String localite;
     @NotNull @Min(1000) @Max(9992)
     private Integer codePostal;
-    @NotBlank
+    @NotBlank @Pattern(regexp = "[0-9]{1,5}[A-z]*")
     private String numRue;
 
     public User() {
@@ -143,9 +143,12 @@ public class User implements UserDetails {
     }
 
     public void setCodePostal(Integer codePostal) {
+        /*
         if(codePostal == null){
             throw new IllegalArgumentException();
         }
+
+         */
         this.codePostal = codePostal;
     }
 

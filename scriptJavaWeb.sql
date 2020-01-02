@@ -17,6 +17,8 @@ create table userTest(
 	localite varchar(255) not null,
 	codepostal int not null,
 	numrue varchar(5) not null
+	
+	CHECK(codepostal >= 1000 AND codepostal <= 9992)
 );
 
 create table produit(
@@ -24,6 +26,9 @@ create table produit(
 	prixcatalogue double not null,
 	tvaappliquee double not null,
 	urlimg varchar(255) not null,
+	
+	CHECK (prixcatalogue >= 0)
+	CHECK (tvaappliquee in (0.06,0.12,0.21))
 );
 
 create table commande(
@@ -41,6 +46,9 @@ create table lignecommande(
 	produitid int not null,
 	foreign key(commandeid) references commande(id),
     foreign key(produitid) references produit(numproduit)
+	
+	CHECK (prix >= 0)
+	CHECK (quantite >= 0)
 );
 
 create table langue(

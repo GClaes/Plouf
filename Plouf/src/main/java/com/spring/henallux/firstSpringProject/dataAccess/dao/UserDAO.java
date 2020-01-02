@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserDAO implements UserDataAccess{
     private final UserRepository userRepository;
@@ -32,5 +34,11 @@ public class UserDAO implements UserDataAccess{
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByLogin(login);
         return providerConverter.userEntityToUserModel(userEntity);
+    }
+
+    @Override
+    public List<User> getUsers(){
+        List<UserEntity>userEntities = userRepository.findAll();
+        return providerConverter.userListEntitiesToUserListModel(userEntities);
     }
 }

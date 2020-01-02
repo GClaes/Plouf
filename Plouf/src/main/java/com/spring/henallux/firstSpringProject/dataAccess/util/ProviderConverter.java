@@ -6,8 +6,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ProviderConverter {
+
+
+    public List<User> userListEntitiesToUserListModel(List<UserEntity> userEntities){
+        List<User>users = new ArrayList<>();
+        for(UserEntity userEntity : userEntities){
+            users.add(userEntityToUserModel(userEntity));
+        }
+        return users;
+    }
     public UserEntity userModelToUserEntity(User user){
         UserEntity userEntity = new UserEntity();
         userEntity.setLogin(user.getUsername());
